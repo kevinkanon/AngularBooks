@@ -1,0 +1,40 @@
+<!-- form template correspondant au form typescript méthode réactive -->
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h2>Enregistrer un nouveau livre</h2>
+      <!-- form type formGroup lié à notre propriété bookForm ki représente le form typescript ds le constructeur-->
+      <!-- au click enregistrer formGroup exécute onSaveBook lié à l'event ngSubmit -->
+      <!-- formControlName lié la valeur de l'input à celle définie dans notre form en typescript -->
+      <form [formGroup]="bookForm" (ngSubmit)="onSaveBook()">
+        <div class="form-group">
+          <label for="title">Titre</label>
+          <input type="text" id="title"
+                 class="form-control" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="author">Auteur</label>
+          <input type="text" id="author"
+                 class="form-control" formControlName="author">
+        </div>
+        <div class="form-group">
+          <label for="synopsis">Synopsis</label>
+          <textarea id="synopsis"
+                    class="form-control" formControlName="synopsis">
+          </textarea>
+        </div>
+        <div class="form-group">
+            <h4>Ajouter une photo</h4>
+            <!-- (change) si utilisateur a clicker et choisit un fichier -->
+            <!-- image/* seul format images .jpeg.... supportés -->
+            <input type="file" (change)="detectFiles($event)"
+                   class="form-control" accept="image/*">
+            <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
+        </div>
+        <!-- Impossible d'enregistrer si donnée form invalid grâce à la méthode invalid de fromGroup -->
+        <button class="btn btn-success" [disabled]="bookForm.invalid || fileIsUploading"
+                type="submit">Enregistrer
+        </button>
+
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+<!-- Barre nav se met à jour automatiquement en fonction du statut de l'utilisateur -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active">
+        <a routerLink="books">Livres</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- possibilité créer compte si utilisateur pas authentifié -->
+      <li routerLinkActive="active" *ngIf="!isAuth">
+        <a routerLink="auth/signup">Créer un compte</a>
+      </li>
+      <!-- possibilité de pouvoir se connecter si utilisateur pas authentifié -->
+      <li routerLinkActive="active" *ngIf="!isAuth">
+        <a routerLink="auth/signin">Connexion</a>
+      </li>
+       <!-- possibilité de se déconnexter si utilisateur deja authentifié -->
+      <li>
+        <a (click)="onSignOut()" style="cursor:pointer"
+          *ngIf="isAuth">Déconnexion</a>
+      </li>
+    </ul>
+  </div>
+</nav>

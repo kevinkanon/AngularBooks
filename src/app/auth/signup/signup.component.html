@@ -1,0 +1,29 @@
+<!-- Formulaire de création nouvel utilisteur correspondant au form typescrpit reactive -->
+<!-- au submit du formulaire signupForm demande à ngSubmit de déclencher onSubmit() -->
+<!-- formControlName lie l'input à la valeur définie dans l'input du form typescript ds le controller -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Créer un compte</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Adresse mail</label>
+        <input type="text"
+               id="email"
+               class="form-control"
+               formControlName="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="text"
+               id="password"
+               class="form-control"
+               formControlName="password">
+      </div>
+       <!-- invalid est une méthode de FormGroup qui désactive bouton creation compte si mauvaise donnée -->
+      <button class="btn btn-primary"
+              type="submit"
+              [disabled]="signUpForm.invalid">Créer mon compte</button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>
